@@ -25,6 +25,33 @@ class Dfs0Tests(unittest.TestCase):
     #    maxValue = examples_dfs0.FindMaxValue("testdata/data_ndr_roese.dfs0", 4);
     #    assert_equal(1.0754467248916626, maxValue);
 
+    def test_many_open_closes_1(self):
+        fn = r"testdata\Rain_accumulated.dfs0"
+
+        for i in range(1000):
+            dfs = DfsFile()
+            dfs.Open(fn)
+
+            # if you close, then this does not error
+            #dfs.Close()
+
+    def test_many_open_closes_2(self):
+        fn = r"testdata\Rain_accumulated.dfs0"
+
+        files = []
+
+        # if this exceeds 509, we get problem.
+        # probably related to 512 limit of max number of files open at one time
+        # https://stackoverflow.com/questions/870173/is-there-a-limit-on-number-of-open-files-in-windows
+        for i in range(509):
+            dfs = DfsFile()
+            dfs.Open(fn)
+            files.append(dfs)
+
+        for dfs in files:
+            dfs.Close()
+
+
     def test_Read_non_ascii_itemname(self):
         dfs = DfsFile()
         dfs.Open("testdata/TS_non_ascii.dfs0")
