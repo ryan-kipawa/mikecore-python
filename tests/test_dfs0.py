@@ -26,7 +26,7 @@ class Dfs0Tests(unittest.TestCase):
     #    assert_equal(1.0754467248916626, maxValue);
 
     def test_many_open_closes_1(self):
-        fn = r"testdata\Rain_accumulated.dfs0"
+        fn = "testdata/Rain_accumulated.dfs0"
 
         for i in range(1000):
             dfs = DfsFile()
@@ -36,7 +36,7 @@ class Dfs0Tests(unittest.TestCase):
             #dfs.Close()
 
     def test_many_open_closes_2(self):
-        fn = r"testdata\Rain_accumulated.dfs0"
+        fn = "testdata/Rain_accumulated.dfs0"
 
         files = []
 
